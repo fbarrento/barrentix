@@ -1,0 +1,49 @@
+{
+    "cSpell.words": [
+        "barrentix",
+        "dbapi",
+        "drivername",
+        "omegaconf",
+        "sqlalchemy"
+    ],
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.autoComplete.extraPaths": [
+        "./src"
+    ],
+    "python.analysis.typeCheckingMode": "strict",
+    "python.formatting.provider": "none",
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.analysis.extraPaths": [
+        "./src"
+    ],
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.codeActionsOnSave": {
+            "source.orghanizaImports": true,
+            "source.fixAll": true,
+        },
+    },
+    "isort.args": ["--profile", "black"],
+    "python.linting.ignorePatterns": [
+        "**/site-packages/**/*.py",
+        ".vscode/*.py",
+        "**/**/__init__.py"
+    ],
+    "yaml.schemas": {
+        "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+      },
+      "yaml.customTags": [ 
+        "!ENV scalar",
+        "!ENV sequence",
+        "tag:yaml.org,2002:python/name:materialx.emoji.to_svg",
+        "tag:yaml.org,2002:python/name:materialx.emoji.twemoji",
+        "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
+      ],
+    "ansible.python.interpreterPath": "/home/adm-barrentf/Codex/Barrentix/pyhton/barrentix/venv/bin/python"
+}
