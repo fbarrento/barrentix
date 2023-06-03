@@ -1,13 +1,13 @@
 from abc import ABC
 from dataclasses import dataclass
 from omegaconf import ListConfig, DictConfig
-from barrentix.contracts.foundation import ApplicationInterface
+from barrentix.contracts.foundation import AbstractContainer
 
 
 @dataclass
 class ServiceProvider(ABC):
 
-    app: ApplicationInterface
+    app: AbstractContainer
 
     config: DictConfig | ListConfig
 

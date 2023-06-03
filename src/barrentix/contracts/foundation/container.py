@@ -1,15 +1,31 @@
 from abc import ABC, abstractmethod
-from typing import Any, Callable
+from typing import Any, Callable, Type
 
 
-class ContainerInterface(ABC):
+class AbstractContainer(ABC):
     @abstractmethod
-    def register(
+    def bind(
         self,
-        name: str | Callable[..., Any],
+        name: str | Callable[..., Any] | Type[Any],
         dependency: Any,
     ) -> None:
         return NotImplementedError
 
-    def resolve(self, name: str) -> Any:
+    @abstractmethod
+    def singleton(
+        self,
+        name: str | Callable[..., Any] | Type[Any],
+        dependency: Any
+    ) -> None:
+        return NotImplementedError
+
+    def resolve(self,
+                name: str | Callable[..., Any] | Type[Any]
+                ) -> Any:
+        return NotImplementedError
+
+    def make(
+        self,
+        name: str | Callable[..., Any] | Type[Any]
+    ) -> Any:
         return NotImplementedError

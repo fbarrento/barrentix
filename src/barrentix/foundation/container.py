@@ -1,26 +1,41 @@
 from inspect import signature
-from typing import Dict, Any, Callable
-from barrentix.contracts.foundation.container import ContainerInterface
+from typing import Dict, Any, Callable, Type
+from barrentix.contracts.foundation import AbstractContainer
 
 
-class SingletonClass(object):
-    def __new__(cls):
-        if not hasattr(cls, "instance"):
-            cls.instance = super(SingletonClass, cls).__new__(cls)
-        return cls.instance
-
-
-class Container(ContainerInterface, SingletonClass):
+class Container(AbstractContainer):
     _dependencies: Dict[str | Callable[..., Any], Any] = {}
 
-    def register(
+    def bind(
         self,
-        name: str | Callable[..., Any],
+        name: str | Callable[..., Any] | Type[Any],
         dependency: Any
     ) -> None:
         self._dependencies[name] = dependency
 
-    def resolve(self, name: str) -> Any:
+    def singleton(
+        self,
+        name: str | Callable[..., Any] | Type[Any],
+        dependency: Any
+    ) -> None:
+        if isinstance(dependency, Callable):
+            self._dependencies[name] = dependency()
+        else:
+            self._dependencies[name] = dependency
+
+    def resolve(
+            self,
+            name: str | Callable[..., Any] | Type[Any]
+    ) -> Any:
+        try:
+            return self._dependencies[name]
+        except Exception:
+            return None
+
+    def make(
+        self,
+        name: str | Callable[..., Any] | type
+    ) -> Any:
         return self._dependencies[name]
 
 
@@ -34,8 +49,9 @@ def inject(callable: Any) -> Any:
             annotation = parameter.annotation
 
             container = Container()
-            new_attributes[parameter_name] = container.resolve(annotation)
-            print(annotation)
+            dependency = container.resolve(annotation)
+            if dependency:
+                new_attributes[parameter_name] = dependency
 
         value = callable(*args, **kwargs)
         return value

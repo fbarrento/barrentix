@@ -6,8 +6,7 @@ class TestConfigLoader():
 
     def test_it_can_get_a_modules_path(self):
 
-        loader = ConfigLoader()
-        config = loader.load_from_module("tests.files.config")
+        config = ConfigLoader().load("tests.files.config")
 
         assert "version" in config.app
 

@@ -1,8 +1,10 @@
 {
     "cSpell.words": [
+        "Barentix",
         "barrentix",
         "dbapi",
         "drivername",
+        "Mundo",
         "omegaconf",
         "sqlalchemy"
     ],
@@ -19,7 +21,8 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.analysis.extraPaths": [
-        "./src"
+        "./src",
+        "./tests"
     ],
     "[python]": {
         "editor.formatOnSave": true,

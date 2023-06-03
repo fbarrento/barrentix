@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class ApplicationInterface(ABC):
-    pass
+class AbstractApplication(ABC):
 
     @abstractmethod
     def boot(self) -> None:
@@ -14,4 +13,4 @@ class ApplicationInterface(ABC):
 
     @abstractmethod
     def boot_service_providers(self) -> None:
-        return NotImplemented
+        return NotImplementedError
