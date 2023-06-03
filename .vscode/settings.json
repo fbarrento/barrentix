@@ -2,6 +2,7 @@
     "cSpell.words": [
         "Barentix",
         "barrentix",
+        "capsys",
         "dbapi",
         "drivername",
         "Mundo",
@@ -16,7 +17,8 @@
     "python.analysis.typeCheckingMode": "strict",
     "python.formatting.provider": "none",
     "python.testing.pytestArgs": [
-        "tests"
+        "tests",
+        "--capture=tee-sys"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,

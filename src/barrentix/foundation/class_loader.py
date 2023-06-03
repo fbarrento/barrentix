@@ -1,5 +1,5 @@
 from typing import Any
-from .loader import AbstractLoader
+from barrentix.contracts.foundation.loader import AbstractLoader
 
 
 class ClassLoader(AbstractLoader):
@@ -13,5 +13,3 @@ class ClassLoader(AbstractLoader):
         imported_module = self._import_module(module=module)
         if hasattr(imported_module, class_name):
             return getattr(imported_module, class_name)
-
-        print(name)

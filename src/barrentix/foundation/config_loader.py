@@ -2,7 +2,7 @@
 from typing import List, Dict, Any
 from dataclasses import dataclass, field
 from omegaconf import OmegaConf, DictConfig, ListConfig
-from .loader import AbstractLoader
+from barrentix.contracts.foundation.loader import AbstractLoader
 
 
 @dataclass

@@ -1,10 +1,34 @@
+from dataclasses import dataclass, field
+from barrentix.contracts.console import AbstractCommand
 from barrentix.console import Command
+from barrentix.foundation import Application
+from typing import Dict, Callable
 
 
+@dataclass
 class BaseCommand(Command):
+    app: Application | None = field(default=None)
+    commands: Dict[str, Dict[str, Callable[..., AbstractCommand]]
+                   ] = field(default_factory=lambda: {})
 
-    def _arguments(self) -> None:
-        self.add_argument("command")
+    @property
+    def signature(self) -> str:
+        return "base"
+
+    @property
+    def description(self) -> str:
+        return (
+            "Hello from base Command"
+        )
+
+    def arguments(self) -> None:
+        setattr(self, "command", None)
 
     def handle(self) -> None:
-        print("Handling Base Command")
+        if self.app is not None:
+            print("Barrentix framework 0.0.1")
+            print("Commands:")
+            for group in self.commands:
+                print(group)
+                for command in self.commands[group]:
+                    print(command)

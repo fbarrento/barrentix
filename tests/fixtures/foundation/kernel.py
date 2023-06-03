@@ -1,6 +1,4 @@
-from typing import Any
 from pytest import fixture
-from pathlib import Path
 from barrentix.foundation.container import inject
 from barrentix.console.kernel import ConsoleKernel as MainConsoleKernel
 
@@ -9,16 +7,8 @@ from barrentix.console.kernel import ConsoleKernel as MainConsoleKernel
 class ConsoleKernel(MainConsoleKernel):
 
     def commands(self) -> None:
-        path = Path(
-            self.app.config.app.paths.tests,
-            "fixtures"
-            "app",
-            "commands"
-        )
-        self.load(path)
-
-    def handle(self, args: Any) -> None:
-        return super().handle(args)
+        self.load_from_module("barrentix.console.commands")
+        self.load_from_module("tests.fixtures.app.commands")
 
 
 @fixture

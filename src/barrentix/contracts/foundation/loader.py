@@ -14,6 +14,10 @@ class AbstractLoader(ABC):
             join(Path(path, "*.py"))
         )
 
+    def _make_file_paths(self, path: Path) -> List[Path]:
+        paths = self._file_paths(path=path)
+        return [Path(path) for path in paths]
+
     def _make_modules_names(self, module: str) -> List[str]:
 
         imported_module = self._import_module(module)

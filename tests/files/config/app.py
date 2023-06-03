@@ -5,7 +5,7 @@ from pathlib import Path
 
 def config() -> Dict[str, Any]:
     return {
-        "name": environ.get("NAME", "Barrentix"),
+        "name": environ.get("APP_NAME", "Barrentix"),
 
         "version": "0.0.1",
         # The application environment.
