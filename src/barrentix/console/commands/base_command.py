@@ -26,4 +26,9 @@ class BaseCommand(Command):
 
     def handle(self) -> None:
         if self.app is not None:
-            print(f"{self.app.config.app.name}")
+            print("Barrentix framework 0.0.1")
+            print("Commands:")
+            for group in self.commands:
+                print(group)
+                for command in self.commands[group]:
+                    print(command)

@@ -64,7 +64,8 @@ class ConsoleKernel(AbstractConsoleKernel, ClassLoader):
 
     def handle(self) -> None:
         base_command = self._commands["base"]["base"](
-            args=self.argv,
+            argv=self.argv,
+            app=self.app,
             commands=self._commands
         )
         if len(self.argv[1:]) == 0:

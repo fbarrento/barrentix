@@ -27,6 +27,24 @@ class TestKernel():
         assert "app" in commands.keys()
         assert "base" in commands.keys()
 
+    def test_it_resolves_the_base_command(
+        self,
+        app: Application,  # type:ignore # noqa
+        capsys: CaptureFixture  # type:ignore # noqa
+    ) -> None:
+        """
+        If no no signature is passed in the console command
+        The kernel must resolve the base command.
+        The base command must print to the console
+        'Barrentix framework 0.0.1'
+        """
+        app.singleton(ConsoleKernel, ConsoleKernel)
+        kernel = app.make(ConsoleKernel)
+        kernel.handle()
+
+        captured: Any = capsys.readouterr()
+        assert "Barrentix framework 0.0.1" in captured.out
+
     def test_it_resolves_a_command(
         self,
         app: Application,  # type:ignore # noqa
