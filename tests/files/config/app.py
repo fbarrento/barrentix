@@ -23,6 +23,7 @@ def config() -> Dict[str, Any]:
             )),
             "storage": "${app.paths.base}/storage",
             "tests": "${app.paths.base}",
+            "barrentix": "${app.paths.base}/../src/barrentix"
         },
 
         # Service Providers
