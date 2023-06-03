@@ -7,3 +7,7 @@ class AbstractConsoleKernel(AbstractKernel):
     @abstractmethod
     def commands(self) -> None:
         raise NotImplementedError
+
+    @abstractmethod
+    def load_from_module(self, module: str) -> None:
+        raise NotImplementedError
